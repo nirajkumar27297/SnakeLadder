@@ -16,29 +16,35 @@ public class SnakeLadder {
 	public void play()
 	{
 		System.out.println("Game Started");
-		//Rolling a dice
-		int number=this.rollDice();
-		System.out.println("The number on dice is "+number);
-		//Getting position for the die 
-		int pos=this.getPosition();
-		//Calling checkOption function to generate Option	
-		int option=this.checkOption();
-		System.out.println("The option is "+option);
 		
-		//Ladder Position
-		if(option == 1)
+		//Playing while position is less than 100
+		while(this.getPosition()<100)
 		{
-			pos += number;
-			this.setPosition(pos);
-		}
-		//Snake Position
-		else if(option == 2)
-		{
-			pos -= number;
-			this.setPosition(pos);
-		}
-		System.out.println("The position of the player is "+this.getPosition());
+			//Rolling a dice
+			int number=this.rollDice();
+			System.out.println("The number on dice is "+number);
+			//Getting position for the die 
+			int pos=this.getPosition();
+			//Calling checkOption function to generate Option	
+			int option=this.checkOption();
+			System.out.println("The option is "+option);
 			
+			//Ladder Position
+			if(option == 1)
+			{
+				pos += number;
+				this.setPosition(pos);
+			}
+			//Snake Position
+			else if(option == 2)
+			{
+				pos -= number;
+				this.setPosition(pos);
+			}
+			System.out.println("The position of the player is "+this.getPosition());
+			
+		}
+		
 	}
 	
 	/**
