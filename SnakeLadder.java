@@ -2,6 +2,8 @@ import java.util.*;
 public class SnakeLadder {
 	//Initialize Start Position as Zero
 	private int position = 0;
+	////Initialize count Position as Zero
+	private int count=0;
 	
 	//Function for rolling a dice
 	private int rollDice()
@@ -22,6 +24,10 @@ public class SnakeLadder {
 		{
 			//Rolling a dice
 			int number=this.rollDice();
+			//Incrementing count by 1
+			this.setCount(this.getCount()+1);
+			//Printing the Count
+			System.out.println("The throw number is "+this.getCount());
 			System.out.println("The number on dice is "+number);
 			//Getting position for the die 
 			int pos=this.getPosition();
@@ -45,6 +51,7 @@ public class SnakeLadder {
 				{
 					this.setPosition(pos);
 					System.out.println("Hurray You Won ,You are at "+this.getPosition());
+					System.out.println("The total number of times dice is thrown, is "+this.getCount());
 					break;
 					
 				}
@@ -64,6 +71,20 @@ public class SnakeLadder {
 		
 	}
 	
+	/**
+	 * @return the count
+	 */
+	public int getCount() {
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	/**
 	 * @return the position
 	 */
