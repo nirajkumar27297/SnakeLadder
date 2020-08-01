@@ -18,7 +18,7 @@ public class SnakeLadder {
 		System.out.println("Game Started");
 		
 		//Playing while position is less than 100
-		while(this.getPosition()<100)
+		while(true)
 		{
 			//Rolling a dice
 			int number=this.rollDice();
@@ -29,11 +29,28 @@ public class SnakeLadder {
 			int option=this.checkOption();
 			System.out.println("The option is "+option);
 			
+			
+			
 			//Ladder Position
 			if(option == 1)
 			{
 				pos += number;
+				//if pos becomes greater than 100 then skipping the loop
+				if(pos>100)
+				{
+					continue;
+				}
+				//if pos becomes 100 then breaking the loop and printing the result
+				if(pos==100)
+				{
+					this.setPosition(pos);
+					System.out.println("Hurray You Won ,You are at "+this.getPosition());
+					break;
+					
+				}
 				this.setPosition(pos);
+				
+				
 			}
 			//Snake Position
 			else if(option == 2)
