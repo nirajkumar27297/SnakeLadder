@@ -2,89 +2,78 @@ import java.util.*;
 public class SnakeLadder {
 	//Initialize Start Position as Zero
 	private int position = 0;
-	////Initialize count Position as Zero
-	private int count=0;
+	private int countResult=0;
 	
+	/**
+	 * @return the countResult
+	 */
+	public int getCountResult() {
+		return countResult;
+	}
+
+	/**
+	 * @param countResult the countResult to set
+	 */
+	public void setCountResult(int countResult) {
+		this.countResult = countResult;
+	}
+
 	//Function for rolling a dice
-	private int rollDice()
-	{
-		Random rand=new Random();
+	private int rollDice() {
+		Random rand = new Random();
 		//generating Random Number from 0 to 5 and adding 1 as LowerLimit
-		int number=rand.nextInt(6)+1;
-		return number;
+		int resultDice = rand.nextInt(6) + 1;
+		return resultDice;
 	}
 	
 	//function for playing game
-	public void play()
-	{
+	public void play() {
 		System.out.println("Game Started");
-		
-		//Playing while position is less than 100
 		while(true)
-		{
-			//Rolling a dice
-			int number=this.rollDice();
-			//Incrementing count by 1
-			this.setCount(this.getCount()+1);
-			//Printing the Count
-			System.out.println("The throw number is "+this.getCount());
-			System.out.println("The number on dice is "+number);
+		{   //Rolling a dice
+			int resultDice = this.rollDice();
+			this.setCountResult(this.getCountResult() + 1);
+			System.out.println("The number on dice is "+resultDice);
 			//Getting position for the die 
-			int pos=this.getPosition();
+			int pos = this.getPosition();
 			//Calling checkOption function to generate Option	
-			int option=this.checkOption();
-			System.out.println("The option is "+option);
-			
-			
-			
-			//Ladder Position
-			if(option == 1)
+			int optionResult = this.checkOption();
+			switch(optionResult)
 			{
-				pos += number;
-				//if pos becomes greater than 100 then skipping the loop
-				if(pos>100)
-				{
-					continue;
-				}
-				//if pos becomes 100 then breaking the loop and printing the result
-				if(pos==100)
-				{
+			    //Ladder Position
+				case 1 :
+					System.out.println("You got a Ladder");
+					pos += resultDice;
+					if(pos > 100)
+					{
+						int numberNeed = 100 - this.getPosition();
+						System.out.println("Sorry, You need "+numberNeed+" to Win");
+						continue;
+					}
+					if(pos == 100) 
+					{
+						this.setPosition(pos);
+						System.out.println("Hurray You Win, You are at "+this.getPosition());
+						System.out.println("The total number of times dice is thrown is "+this.getCountResult());
+						return;
+					}
 					this.setPosition(pos);
-					System.out.println("Hurray You Won ,You are at "+this.getPosition());
-					System.out.println("The total number of times dice is thrown, is "+this.getCount());
 					break;
-					
-				}
-				this.setPosition(pos);
-				
-				
-			}
-			//Snake Position
-			else if(option == 2)
-			{
-				pos -= number;
-				this.setPosition(pos);
+				//Snake Position
+				case 2:
+					System.out.println("You got a Snake");
+					pos -= resultDice;
+					this.setPosition(pos);
+					break;
+				//No Play
+				default:
+					System.out.println("You got a NoPlay");
 			}
 			System.out.println("The position of the player is "+this.getPosition());
-			
 		}
-		
+			
 	}
 	
-	/**
-	 * @return the count
-	 */
-	public int getCount() {
-		return count;
-	}
-
-	/**
-	 * @param count the count to set
-	 */
-	public void setCount(int count) {
-		this.count = count;
-	}
-
 	/**
 	 * @return the position
 	 */
@@ -99,26 +88,23 @@ public class SnakeLadder {
 		// If position < 0, then Position is assigned to zero
 		if(position < 0)
 		{
-			position=0;
+			position = 0;
 			
 		}
 		this.position = position;
 	}
-
-	public int checkOption()
-	{
-	     //check Option
-			/*
-			 * 0- No Play
-			 * 1-Ladder
-			 * 2-Snake
-			 */
-		
-		Random rand = new Random();
+	 //check Option
+	/*
+	 * 0- No Play
+	 * 1-Ladder
+	 * 2-Snake
+	 */
+	public int checkOption(){
+	    Random rand = new Random();
 		//Generating random numbers in range 0-2
-		int option=rand.nextInt(3);
+		int option = rand.nextInt(3);
 		return option;
-	}
+	} 
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
