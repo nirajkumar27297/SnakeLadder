@@ -118,7 +118,7 @@ public class SnakeLadder  {
 		// TODO Auto-generated method stub
 		//Creating object for SnakeLadder Class
 		
-		int n=3;
+		int n=2;
 		ArrayList<SnakeLadder> playerList = new ArrayList<SnakeLadder>(n);
 		
 		for(int i=0;i<n;i++) {
@@ -126,7 +126,6 @@ public class SnakeLadder  {
 			playerList.add(ObjSnakeLadder);
 		}
 		while(true) {
-			//System.out.println(3);
 			for(int i=0;i<playerList.size();i++) {
 				
 				int playerNumber = i + 1;
